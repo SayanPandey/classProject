@@ -1,8 +1,10 @@
 .banner{
-   background-image:url('img/banner.jpg');
+   background-image:url('img/mainbanner.jpg');
+   background-position-x: -45px;
+   background-attachment: fixed;
    text-align: center;
    border-radius:20px;
-   display:inline-block;
+   display:block;
    min-width:100%;
    border: black solid 2px;
    border-bottom-right-radius:600px;
@@ -10,112 +12,89 @@
    box-shadow: black 10px 10px 20px;
 
 }
-
+#select{
+    display:block;
+}
 #logo{
     width: auto;
     max-width: 15%;
 }
 body{
     font-family: "Arial", Times, serif;
-    background: #F9FFF0  ;
 }
 .bannertext{
-    font-size: 2em;
+    font-size: 2.3em;
     color: white;
-    text-shadow: black 0px 0px 20px;
+    text-shadow: black 0px 1px 30px;
 }
-.nav{
-    color:black;
-    text-decoration:none;
-    padding:15px;
-    background:tomato;
-    display:inline-block;
-    min-width: 17.7%;
-    border-top-right-radius:100px;
-    border-bottom-left-radius:100px;
-    font-size:1.25em;
-}
-.nav:hover{
-    color:white;
-    background-color:#ff1aff;
-}
-nav{
-    background:black;
-    padding:5px;
-    border-radius:5px;
-    text-align: center;
-    display:inline-block;
-    min-width:100%;
+#student{
+    position:relative;
+    border :black solid;
+    width: 48.5vw;
+    height:50vh;
+    display: inline-block;
+    float:left;
+    background-image:url('img/banner.jpg'); 
+    border-radius:10px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
     box-shadow: black 10px 10px 20px;
-    border-top-right-radius:100px;
-    border-bottom-left-radius:100px;
-    position:sticky;
-    position:-webkit-sticky;
-    top:0;
 }
-#home,#register,#login{
-    padding-top: 20px;
-    display:block;
-    min-width:100%;
+#admin{
+    position:relative;
+    border:black solid;
+    width: 48vw;
+    height:50vh;
+    display:inline-block;
+    float:right;
+    background-image:url('img/adminbanner.jpg'); 
+    border-radius:10px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    box-shadow: black 10px 10px 20px;
 }
-.title{
-    color:Tomato;
+#message{
+    color:#083854;
     font-weight:bold;
-    background-color:  #006600;
+    font-size:1.2em;
+    background-color:#D6ED11;
     border-radius:10px;
     padding:20px;
     display:inline-block;
-    min-width:70%;
-    border-top-right-radius:100px;
-    border-bottom-left-radius:100px;
-    text-shadow:black 0px 0px 20px;
+    width:60vw;
     box-shadow: black 10px 10px 20px;
+    border-bottom-right-radius: 180px;
+    border-bottom-left-radius: 180px;
 }
-.content,dl{
-    border:black solid;
-    border-radius:20px;
-    box-shadow: black 10px 10px 20px;
-    border-top-right-radius:200px;
-    border-bottom-left-radius:200px;
-}
-dt,.heading{
-    color:tomato;
-    margin-left: 10%;
-    font-weight: bold;
-    font-size: 1.5em;
-}
-dd{
-    margin-left: 15%;
-}
-.design{
-    z-index:-999;
-    float:right;
+#std_img{
     width:auto;
-    max-width: 25%; 
-    position:absolute;
-    right:10px;
+    max-width: 55%;
+    position: absolute;
+    top:60px;
+    right:0px;
 }
-input{
-    float:right;
-    min-width: 50%;
-    margin-right:30%;
-    paddig:30px;
-    border-top-right-radius:15px;
-    border-bottom-left-radius:15px;
-    font-size: 1em;
+#admin_img{
+    width:auto;
+    max-width: 55%;
+    position: absolute;
+    top:70px;
+}
+.panel{
+    display: inline-block;
+    z-index: 999;
+    position:relative;
+    top:125px;
+    padding:10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    color:#083854;
+    background-color:#D6ED11;
+    border-radius:50px;
+    box-shadow: black 20px 20px 30px;
+}
+.panel:hover{
+    background:#ff1aff; 
 }
 .wrap{
-    text-align: center;
-    display:block;
-}
-#message{
-    display: none;
-    font-weight: bold;
-    border:black solid;
-    border-radius: 6px;
-    padding:10px;
-    min-width:60%;
-    border-top-right-radius: 40px;
-    border-bottom-left-radius: 40px;
-    box-shadow: black 5px 5px 10px;
+    text-align:center;
 }

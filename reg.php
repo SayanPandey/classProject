@@ -23,11 +23,11 @@
 		$stmt->bind_param("ississ",$regno,$rollno,$name,$phone,$email,$pass);
                 if(!($stmt->execute())){
                     $_SESSION['response']="Execute failed:" . $stmt->error;
-                    header("Location:/classProject/#register",true,303);
+                    header("Location:/classProject/students/#register",true,303);
                 }
                 else{
                     $_SESSION['response']="Successfully Registered";
-                    header("Location:/classProject/#register",true,303);
+                    header("Location:/classProject/students/#register",true,303);
                 }
 	}
 ?>
