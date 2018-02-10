@@ -11,7 +11,6 @@
    box-shadow: black 10px 10px 20px;
 
 }
-
 #logo{
     width: auto;
     max-width: 15%;
@@ -30,7 +29,7 @@ body{
     padding:15px;
     background:#00EAFF;
     display:inline-block;
-    min-width: 17.7%;
+    min-width: 22.7%;
     border-top-right-radius:100px;
     border-bottom-left-radius:100px;
     font-size:1.25em;
@@ -52,8 +51,9 @@ nav{
     position:sticky;
     position:-webkit-sticky;
     top:0;
+    z-index: 999;
 }
-#home,#register,#login{
+#home,#request,#login{
     padding-top: 20px;
     display:block;
     min-width:100%;
@@ -76,6 +76,7 @@ nav{
     box-shadow: black 10px 10px 20px;
 }
 .content,dl{
+    position: relative;
     border:black solid;
     border-radius:20px;
     box-shadow: black 10px 10px 20px;
@@ -95,7 +96,7 @@ dd{
     z-index:-999;
     float:right;
     width:auto;
-    max-width: 25%; 
+    max-width: 20%; 
     position:absolute;
     right:10px;
 }
@@ -103,7 +104,6 @@ input{
     float:right;
     min-width: 50%;
     margin-right:30%;
-    paddig:30px;
     border-top-right-radius:15px;
     border-bottom-left-radius:15px;
     font-size: 1em;
@@ -113,7 +113,7 @@ input{
     display:block;
 }
 #message{
-    display: none;
+    display:none;
     font-weight: bold;
     border:black solid;
     border-radius: 6px;
@@ -122,4 +122,90 @@ input{
     border-top-right-radius: 40px;
     border-bottom-left-radius: 40px;
     box-shadow: black 5px 5px 10px;
+}
+.detail{
+    color:red;
+    font-weight: bold;
+    font-size: 1em;
+}
+.accept{
+    position: absolute;
+    font-size: 1em;
+    background-color:rgb(53, 184, 6);
+    padding:10px;
+    color:white;
+    min-width:20%;
+    border:none;
+    box-shadow: black 5px 5px 10px;
+    border-radius: 10px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    top:30%;
+    right:30%;
+}
+.reject{
+    position: absolute;
+    font-size: 1em;
+    background-color:rgb(192, 34, 34);
+    padding:10px;
+    color:white;
+    min-width:20%;
+    border:none;
+    box-shadow: black 5px 5px 10px;
+    border-radius: 10px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    top:50%;
+    right:30%;
+}
+.accept:hover{
+    background-color:rgb(44, 253, 2);
+    text-shadow:white 0px 0px 5px;
+}
+.reject:hover{
+    background-color:#ff0000;
+    text-shadow:white 0px 0px 5px;
+}
+#request_select{
+    color:white;
+    position:fixed;
+    bottom:0;
+    left:50%;
+    margin-left:-47.5%;
+    text-align:center;
+    background-color:black;
+    padding:5px;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    min-width:95%;
+    box-shadow:black 0 -5px 10px;
+}
+.r{
+    background-color:red;
+    border-top-left-radius: 50px;
+    padding:10px;
+    font-size: 1.2em;
+    display:inline-block;
+    min-width:30%;
+}
+.n{
+    background-color:#00EAFF;
+    padding:10px;
+    font-size: 1.2em;
+    display:inline-block;
+    min-width:20%;
+}
+.a{
+    background-color:rgb(0, 255, 0);
+    border-top-right-radius: 50px;
+    padding:10px;
+    font-size: 1.2em;
+    display:inline-block;
+    min-width:30%;
+}
+.r:hover,.n:hover,.a:hover{
+    background-color: #ff1aff;
+}
+.rejected,.accepted{
+    display:none;
 }

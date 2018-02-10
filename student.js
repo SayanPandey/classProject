@@ -59,13 +59,23 @@ document.getElementById('conf_pass').addEventListener("keyup",function(){
 if(response!=0){
     document.getElementById('message').style.display='inline-block';
     document.getElementById('message').innerHTML=response;
+    document.getElementById('home').style.display='none';
+    document.getElementById('register').style.display='block';
 }
 
 /*
  * JQuery ::
  */
 function show(x){
-    $("#register , #home, #login").hide();
+    $("#register , #home, #login, #profile").hide();
     $('#'+x).fadeIn();
     
 }
+$("input[name ='DOB']").change(function(){
+    var dob=new Date($(this).val());
+    var today= new Date();
+    var age=today.getFullYear()-dob.getFullYear();
+    if(today.getMonth() < dob.getMonth() || (today.getMonth()==dob.getMonth() && today.getDate()<dob.getDate()))
+        age--; 
+    $("input[name ='age']").val(age);
+});

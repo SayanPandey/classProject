@@ -54,8 +54,9 @@ nav{
     position:sticky;
     position:-webkit-sticky;
     top:0;
+    z-index: 20;
 }
-#home,#register,#login{
+#profile,#register,#login{
     padding-top: 20px;
     display:block;
     min-width:100%;
@@ -101,18 +102,18 @@ dd{
     position:absolute;
     right:10px;
 }
-input{
+input,textarea{
     float:right;
     min-width: 50%;
     margin-right:30%;
-    paddig:30px;
+    padding:5px;
     border-top-right-radius:15px;
     border-bottom-left-radius:15px;
     font-size: 1em;
 }
 .wrap{
     text-align: center;
-    display:block;
+    display: block;
 }
 #message{
     display: none;
@@ -124,4 +125,41 @@ input{
     border-top-right-radius: 40px;
     border-bottom-left-radius: 40px;
     box-shadow: black 5px 5px 10px;
+}
+.profile_back{
+    margin-left:auto;
+    margin-right: auto;
+    background-image: url('img/std_img/20150213.jpg');
+    min-height: 80vh;
+    min-width :90vw; 
+    background-size: cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment: fixed; 
+    position:relative;
+    border-radius:30px;
+    border-top-right-radius: 200px;
+    border-bottom-left-radius: 200px;
+    box-shadow: black 10px 10px 20px;
+}
+#profile_name{
+    position: absolute;
+    bottom:30px;
+    left:9%;
+    font-size: 5em;
+    color:white;
+    text-shadow: black 10px 10px 20px;
+}
+.details{
+    color:black;
+}
+.profile_back .nav{
+    text-align: center;
+    position:absolute;
+    bottom:30px;
+    right:10px;
+    border-width: 5px;
+    border:black solid;
+    box-shadow: black 10px 10px 20px;
+}
 }

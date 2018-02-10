@@ -5,29 +5,28 @@
     $name=isset($_POST['name'])?htmlspecialchars($_POST['name']):0;
     $phone=isset($_POST['phone'])?htmlspecialchars($_POST['phone']):0;
     $email=isset($_POST['email'])?htmlspecialchars($_POST['email']):0;
-    $pass=isset($_POST['pass'])?htmlspecialchars($_POST['pass']):0;
+    $pass=isset($_POST['password'])?htmlspecialchars($_POST['password']):0;
+    $request=0;
     
     $servername='localhost';
     $username='root';
     $password='';
     $database='classproject';
-    
-    echo $regno." ".$rollno." ".$phone." ".$pass." ".$name." ".$email;
 	
 	$conn = new mysqli($servername,$username,$password,$database);
 	if($conn->connect_error){
 		die("Fatal Connection Error !!");
 	}
 	
-    if($stmt=$conn->prepare(' insert into students (regno,rollno,name,phone,email,pass) values (?,?,?,?,?,?)')){
-		$stmt->bind_param("ississ",$regno,$rollno,$name,$phone,$email,$pass);
+    if($stmt=$conn->prepare(' insert into students (regno,rollno,name,phone,email,pass,request) values (?,?,?,?,?,?,?)')){
+		$stmt->bind_param("ississi",$regno,$rollno,$name,$phone,$email,$pass,$request);
                 if(!($stmt->execute())){
                     $_SESSION['response']="Execute failed:" . $stmt->error;
-                    header("Location:/classProject/students/#register",true,303);
+                    header("Location:/classProject/students",true,303);
                 }
                 else{
-                    $_SESSION['response']="Successfully Registered";
-                    header("Location:/classProject/students/#register",true,303);
+                    $_SESSION['response']="Successfully Registered; Use Login form from next time";
+                    header("Location:/classProject/students",true,303);
                 }
 	}
 ?>

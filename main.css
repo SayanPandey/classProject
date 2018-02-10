@@ -35,6 +35,7 @@ body{
     display: inline-block;
     float:left;
     background-image:url('img/banner.jpg'); 
+    background-attachment: fixed;
     border-radius:10px;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
@@ -48,6 +49,7 @@ body{
     display:inline-block;
     float:right;
     background-image:url('img/adminbanner.jpg'); 
+    background-attachment: fixed;
     border-radius:10px;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
