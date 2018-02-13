@@ -79,3 +79,10 @@ $("input[name ='DOB']").change(function(){
         age--; 
     $("input[name ='age']").val(age);
 });
+$(document).ready(function(){
+    if(login!="0"){
+        $("#register , #home, #login, #profile").hide();
+        $('#login').fadeIn();
+        $('#message1').text(login).css({'display':'inline-block'});
+    }
+});

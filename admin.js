@@ -8,7 +8,8 @@ if(response!=0){
     document.getElementById('message').style.display='inline-block';
     document.getElementById('message').innerHTML=response;
 }
-
+if(response=='Success')
+    document.getElementById('request_select').style.display='block';
 /*
  * JQuery ::
  */
@@ -42,7 +43,7 @@ function accept(x){
         }).slideDown();
     })
 }
-function display(){
+function display(x){
     $(".rejected , .accepted, .new").hide();
     $('.'+x).fadeIn();
 }

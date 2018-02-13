@@ -87,9 +87,11 @@
                 position:absolute;
                 right:10px;" src="img/back2.png">
             <h1>&nbsp;&nbsp;&nbsp;&nbsp;Fill up the details:</h1>
-            <form>
+            <form action="login.php" method="POST">
+                <input type="hidden" value="students" name="logger">
                 <h3 class="heading">Registration Number:&nbsp;<input type="number" name="regno" placeholder="Enter Registration number" required></h3>
                 <h3 class="heading">Password:&nbsp;<input type="password" name="password" placeholder="Enter password" required></h3>
+                <div class="wrap"><h4 id="message1"></h4></div>
                 <div class="wrap"><button class="nav" type="submit">Login</button></div>
                 <br>
             </form>
@@ -99,50 +101,83 @@
     <div id="profile">
         <h1 class="title" style="font-size: 3em">&nbsp;&nbsp;Profile</h1>
         <!--content-->
-        <div class="content">
-            <img style=" z-index:-999;
-                float:right;
-                width:auto;
-                max-width: 20%; 
-                position:absolute;
-                right:10px;" src="img/back2.png">
-            <h1>&nbsp;&nbsp;&nbsp;&nbsp;Basic Details:</h1>
-            <h3 class="heading">Registration Number:&nbsp;<a class="details">20150213</a></h3>
-            <h3 class="heading">Roll Number:&nbsp;<a class="details">15/IT/21</a></h3>
-            <h3 class="heading">Name:&nbsp;<a class="details">Sayan Pandey</a></h3>
-            <h3 class="heading">Phone:&nbsp;<a class="details">9564055284</a></h3>
-            <h3 class="heading">Email Id:&nbsp;<a class="details">sayanpandey@gmail.com</a></h3>
-            <br>
-        </div>
-        <br>
-        <!--Profile pic-->
-        <div class="profile_back">
-            <div id="profile_name">Sayan Pandey</div>
-            <a class="nav">Upload Photo</a>
-        </div>
-        <br>
-        <!--More Details-->
-        <div>
-            <!--content-->
-            <div class="content">
-                <img class="design" src="img/back2.png">
-                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Fill up the details:</h1>
-                <form method="POST" action='reg.php'>
-                    <h3 class="heading">Date of Birth:&nbsp;<input type="date" name="DOB" placeholder="Enter Date of Birth" required></h3>
-                    <h3 class="heading">Age:&nbsp;<input type="number" name="age" placeholder="Your age here" readonly></h3>
-                    <h3 class="heading">Address:&nbsp;<input type='text' name="address" placeholder="Enter your address" required></h3>
-                    <h3 class="heading">Name:&nbsp;<input type="text" name="name" placeholder="Enter your name" required></h3>
-                    <h3 class="heading">Phone:&nbsp;<input type="number" name="phone" placeholder="Enter your phone number" required></h3>
-                    <h3 class="heading">Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
-                    <div class="wrap"><h4 id="message2"></h4></div>
-                    <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button></div>
-                    <br>
-                </form>
-            </div>
-        </div>
+        <?php
+            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='Success'){
+                $server="localhost";
+                $username="root";
+                $password="";
+                $database="classProject";
+
+                $conn=new mysqli($server,$username,$password,$database);
+                if($conn->connect_error)
+                    die('Fatal Connection error!!');
+                //Basic Profile
+                $sql="SELECT * from students where regno=".$_SESSION['regno'];
+                $result=$conn->query($sql);
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $name=$row["name"];
+                        echo '<div class="content">
+                        <img style=" z-index:-999;
+                            float:right;
+                            width:auto;
+                            max-width: 20%; 
+                            position:absolute;
+                            right:10px;" src="img/back2.png">
+                        <h1>&nbsp;&nbsp;&nbsp;&nbsp;Basic Details:</h1>
+                        <h3 class="heading">Registration Number:&nbsp;<a class="details">'.$row['regno'].'</a></h3>
+                        <h3 class="heading">Roll Number:&nbsp;<a class="details">'.$row['rollno'].'</a></h3>
+                        <h3 class="heading">Name:&nbsp;<a class="details">'.$row['name'].'</a></h3>
+                        <h3 class="heading">Phone:&nbsp;<a class="details">'.$row['phone'].'</a></h3>
+                        <h3 class="heading">Email Id:&nbsp;<a class="details">'.$row['email'].'</a></h3>
+                        <br>
+                    </div>
+                    <br>';
+                    }
+                }
+                else {
+                    echo "<div class='new'><div class=content><br><h1 style='margin-left: 10%;'>Problem inloading Basic profile</h1><br></div><br><br></div>";
+                }
+                
+            //Profile picture
+            echo'<div class="profile_back" style="background-image: url(img/std_img/'.$_SESSION['regno'].'.jpg);">
+                    <div id="profile_name">'.$name.'</div>
+                    <input type="file" name="file" id="file" />
+                    <a class="nav" onclick=$("#file").click()>Upload file</a>
+                </div>
+                <br>';
+            
+        
+            //More datails
+            echo '<div>
+                <!--content-->
+                <div class="content">
+                    <img class="design" src="img/back2.png">
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Additional Details:</h1>
+                    <form method="POST" action="reg.php">
+                        <h3 class="heading">Date of Birth:&nbsp;<input type="date" name="DOB" placeholder="Enter Date of Birth" required></h3>
+                        <h3 class="heading">Age:&nbsp;<input type="number" name="age" placeholder="Your age here" readonly></h3>
+                        <h3 class="heading">Address:&nbsp;<input type="text" name="address" placeholder="Enter your address" required></h3>
+                        <h3 class="heading">Father\'s Name:&nbsp;<input type="text" name="fname" placeholder="Enter your Father\'s name" required></h3>
+                        <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" name="mname" placeholder="Enter your Mother\'s name" required></h3>
+                        <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
+                        <div class="wrap"><h4 id="message2"></h4></div>
+                        <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button></div>
+                        <br>
+                    </form>
+                </div>
+            </div>';
+        }
+        else {
+            echo "<div class='new'><div class=content><br><h1 style='margin-left: 10%;'>Please LOGIN first !!</h1><br></div><br><br></div>";
+        }
+        ?>
     </div>
     </body>
-    <script>var response= "<?php echo isset($_SESSION['response'])?$_SESSION['response']:0;?>";</script>
+    <script>
+        var response= "<?php echo isset($_SESSION['response'])?$_SESSION['response']:0;?>";
+        var login="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0;?>";  
+    </script>
     <script src="student.js"></script>
 </html>
 <?php

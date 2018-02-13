@@ -167,6 +167,7 @@ input{
     text-shadow:white 0px 0px 5px;
 }
 #request_select{
+    display:none;
     color:white;
     position:fixed;
     bottom:0;

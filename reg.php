@@ -25,7 +25,7 @@
                     header("Location:/classProject/students",true,303);
                 }
                 else{
-                    $_SESSION['response']="Successfully Registered; Use Login form from next time";
+                    $_SESSION['response']="Successfully lodged Registration Request; Use Login form from next time";
                     header("Location:/classProject/students",true,303);
                 }
 	}

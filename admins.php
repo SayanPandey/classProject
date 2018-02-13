@@ -20,7 +20,7 @@
             <a class="nav" onclick="show('home')">Home</a>
             <a class="nav" onclick="show('login')">Login</a>
             <a class="nav" onclick="show('request')">Requests</a>
-            <a class="nav" >Logout</a>
+            <a class="nav"  href="/classProject">Logout</a>
         </nav>
     <!--Home-->
     <div id="home">
@@ -73,7 +73,7 @@
         <h1 class="title" style="font-size: 3em">&nbsp;&nbsp;Requests</h1>
         <!--content-->
         <?php
-            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='Success'||1){
+            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='Success'){
                 $server="localhost";
                 $username="root";
                 $password="";
@@ -87,7 +87,7 @@
                 $result=$conn->query($sql);
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='content new'>
+                        echo "<div class=new><div class='content'>
                             <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/back2.png>
                             <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
                             "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
@@ -96,18 +96,18 @@
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
-                            </div><br>";
+                            </div><br><br></div>";
                     }
                 }
                 else {
-                    echo "No Recent Requests ....";
+                    echo "<div class='new'><div class=content><br><h1 style='margin-left: 10%;'>No Recent Requests...</h1><br></div><br><br></div>";
                 }
                 //Rejected Requests
                 $sql="SELECT * from students where request=-1";
                 $result=$conn->query($sql);
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='content accepted'>
+                        echo "<div class=rejected><div class='content'>
                             <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/reject.png>
                             <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
                             "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
@@ -116,18 +116,18 @@
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
-                            </div><br>";
+                            </div><br><br></div>";
                     }
                 }
                 else {
-                    echo "No Recent Requests ....";
+                    echo "<div class='rejected'><div class=content><br><h1 style=' margin-left: 10%;'>No Rejected Requests...</h1><br></div><br><br></div>";
                 }
                 //Accepted Requests
                 $sql="SELECT * from students where request=1";
                 $result=$conn->query($sql);
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='content rejected'>
+                        echo "<div class=accepted><div class='content'>
                             <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/accept.png>
                             <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
                             "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
@@ -136,25 +136,25 @@
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
-                            </div><br>";
+                            </div><br><br></div>";
                     }
                 }
                 else {
-                    echo "No Recent Requests ....";
+                    echo "<div class='accepted'><div class=content><br><h1 style=' margin-left: 10%;'>No Accepted Requests...</h1><br></div><br><br></div>";
                 }
             }
             else
-                echo "<h1 class=content>You need to Login First !!</h1>";
+                echo "<div class=content><br><h1 style=' margin-left: 10%;'>You need to LOGIN first !!</h1><br></div>";
         ?>
         <div id="request_select">
             <a class="head">Sort Request By:<a>
-            <a class="r" onclick=display(rejected)>Rejected</a>
-            <a class="n" onclick=display(new)>New</a>
-            <a class="a" onclick=display(accepted)>Accepted</a>
+            <a class="r" onclick="display('rejected')">Rejected</a>
+            <a class="n" onclick="display('new')">New</a>
+            <a class="a" onclick="display('accepted')">Accepted</a>
         </div>
     </div>
     </body>
-    <script>var response= "<?php echo isset($_SESSION['login'])?$_SESSION['login']:0; ?>";</script>
+    <script>var response="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0; ?>";</script>
     <script src="admin.js"></script>
     <script src="jquery3.3.1.js"></script>
 </html>

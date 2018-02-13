@@ -115,7 +115,7 @@ input,textarea{
     text-align: center;
     display: block;
 }
-#message{
+#message,#message1{
     display: none;
     font-weight: bold;
     border:black solid;
@@ -129,7 +129,6 @@ input,textarea{
 .profile_back{
     margin-left:auto;
     margin-right: auto;
-    background-image: url('img/std_img/20150213.jpg');
     min-height: 80vh;
     min-width :90vw; 
     background-size: cover;
@@ -162,4 +161,6 @@ input,textarea{
     border:black solid;
     box-shadow: black 10px 10px 20px;
 }
+.profile_back input{
+    display:none;
 }
