@@ -102,7 +102,7 @@ dd{
     position:absolute;
     right:10px;
 }
-input,textarea{
+input,textarea,select{
     float:right;
     min-width: 50%;
     margin-right:30%;

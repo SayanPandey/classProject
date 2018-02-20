@@ -22,7 +22,7 @@
             <a class="nav"  onclick="show('register')">Register</a>
             <a class="nav"  onclick="show('login')">Login</a>
             <a class="nav"  onclick="show('profile')">Profile</a>
-            <a class="nav" >Logout</a>
+            <a class="nav" href="login.php">Logout</a>
         </nav>
     <!--Home-->
     <div id="home">
@@ -102,7 +102,7 @@
         <h1 class="title" style="font-size: 3em">&nbsp;&nbsp;Profile</h1>
         <!--content-->
         <?php
-            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='Success'){
+            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='You are logged in,Check Profile'){
                 $server="localhost";
                 $username="root";
                 $password="";
@@ -153,7 +153,7 @@
                 <!--content-->
                 <div class="content">
                     <img class="design" src="img/back2.png">
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Additional Details:</h1>
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Personal Details:</h1>
                     <form method="POST" action="reg.php">
                         <h3 class="heading">Date of Birth:&nbsp;<input type="date" name="DOB" placeholder="Enter Date of Birth" required></h3>
                         <h3 class="heading">Age:&nbsp;<input type="number" name="age" placeholder="Your age here" readonly></h3>
@@ -161,12 +161,60 @@
                         <h3 class="heading">Father\'s Name:&nbsp;<input type="text" name="fname" placeholder="Enter your Father\'s name" required></h3>
                         <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" name="mname" placeholder="Enter your Mother\'s name" required></h3>
                         <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
-                        <div class="wrap"><h4 id="message2"></h4></div>
-                        <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button></div>
+                        <div class="wrap"><h4 class="message2"></h4></div>
                         <br>
                     </form>
                 </div>
-            </div>';
+            </div>
+            <br>
+            <div>
+                <!--content-->
+                <div class="content">
+                    <img class="design" src="img/back2.png" style="max-width:20%">
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Academic Details:</h1>
+                    <form method="POST" action="reg.php">
+                        <h3 class="heading">10th Standard marks:&nbsp;<input type="number" name="10m" placeholder="Class 10 percentage here" required></h3>
+                        <h3 class="heading">12th Standard marks:&nbsp;<input type="number" name="12m" placeholder="Class 12 percentage here" required></h3>
+                        <h3 class="heading">Course:&nbsp;
+                            <select name="course" required>
+                                <option>Select Course </option>
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="M.Tech">M.Tech</option>
+                                <option value="MCA">MCA</option>
+                            </select>
+                        </h3>
+                        <h3 class="heading">Course:&nbsp;
+                            <select name="course" placeholder="Select your course" required>
+                            <option value="0" selected>Select Branch </option>
+                            <option value="1">Computer Science and Engineering</option>
+                            <option value="2">Information Technology</option>
+                            <option value="3">Electronic and Communication Engineering</option>
+                            <option value="4">Mechanical Engineering</option>
+                            <option value="5">Civil Engineering</option>
+                            <option value="6">Chemical Engineering</option>
+                            <option value="7">Electrical Engineering</option>
+                            <option value="8">Metallurgy </option>
+                            <option value="9">Biotechnology</option>
+                        </select>
+                        </h3>
+                        <div class="wrap"><h4 class="message2"></h4></div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div>
+            <!--content-->
+            <div class="content">
+                <form method="POST" action="reg.php">
+                    <br>
+                    <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button>
+                    <button class="nav" id="set_button" type="submit">Update</button></div>
+                    <br>
+                </form>
+            </div>
+        </div>
+            ';
         }
         else {
             echo "<div class='new'><div class=content><br><h1 style='margin-left: 10%;'>Please LOGIN first !!</h1><br></div><br><br></div>";
@@ -180,7 +228,4 @@
     </script>
     <script src="student.js"></script>
 </html>
-<?php
-session_unset();
-session_destroy();
-?>
+                        

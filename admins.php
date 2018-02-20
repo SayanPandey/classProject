@@ -20,7 +20,7 @@
             <a class="nav" onclick="show('home')">Home</a>
             <a class="nav" onclick="show('login')">Login</a>
             <a class="nav" onclick="show('request')">Requests</a>
-            <a class="nav"  href="/classProject">Logout</a>
+            <a class="nav"  href="login.php">Logout</a>
         </nav>
     <!--Home-->
     <div id="home">
@@ -73,7 +73,7 @@
         <h1 class="title" style="font-size: 3em">&nbsp;&nbsp;Requests</h1>
         <!--content-->
         <?php
-            if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='Success'){
+            if(isset($_SESSION['alogin']) && htmlspecialchars($_SESSION['alogin'])=='You are logged in,Check Requests'){
                 $server="localhost";
                 $username="root";
                 $password="";
@@ -154,11 +154,7 @@
         </div>
     </div>
     </body>
-    <script>var response="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0; ?>";</script>
+    <script>var response="<?php echo isset($_SESSION['alogin'])?$_SESSION['alogin']:0; ?>";</script>
     <script src="admin.js"></script>
     <script src="jquery3.3.1.js"></script>
 </html>
-<?php
-session_unset();
-session_destroy();
-?>

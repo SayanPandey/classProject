@@ -8,8 +8,13 @@ if(response!=0){
     document.getElementById('message').style.display='inline-block';
     document.getElementById('message').innerHTML=response;
 }
-if(response=='Success')
+if(response=='You are logged in,Check Requests'){
     document.getElementById('request_select').style.display='block';
+    var x=document.getElementById('login').getElementsByTagName('button')[0];
+    x.setAttribute("disabled","disabled");
+    x.style.backgroundColor="grey";
+}
+
 /*
  * JQuery ::
  */

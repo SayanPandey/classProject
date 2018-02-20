@@ -84,5 +84,6 @@ $(document).ready(function(){
         $("#register , #home, #login, #profile").hide();
         $('#login').fadeIn();
         $('#message1').text(login).css({'display':'inline-block'});
+        $('#login').find('button').attr('disabled','disabled').css('background-color','grey');
     }
 });
