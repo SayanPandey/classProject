@@ -164,3 +164,19 @@ input,textarea,select{
 .profile_back input{
     display:none;
 }
+.valError{
+    background-color:red;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    min-width: 50%;
+    display:none;
+    border:3px solid black;
+}
+.errorCont{
+    position:fixed;
+    bottom:0;
+    right:10px;
+    max-width: 23%;
+    min-width: 22%;
+}

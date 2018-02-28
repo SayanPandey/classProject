@@ -59,11 +59,25 @@
             <img class="design" src="img/back2.png">
             <h1>&nbsp;&nbsp;&nbsp;&nbsp;Fill up the details:</h1>
             <form method="POST" action='reg.php'>
-                <h3 class="heading">Registration Number:&nbsp;<input type="number" name="regno" placeholder="Enter Registration number" required></h3>
-                <h3 class="heading">Roll Number:&nbsp;<input type="text" name="rollno" placeholder="Enter Roll number" required></h3>
-                <h3 class="heading">Name:&nbsp;<input type="text" name="name" placeholder="Enter your name" required></h3>
-                <h3 class="heading">Phone:&nbsp;<input type="number" name="phone" placeholder="Enter your phone number" required></h3>
-                <h3 class="heading">Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
+                <h3 class="heading">Registration Number:&nbsp;<input onblur=Validate(this) type="number" name="regno" placeholder="Enter Registration number" maxlength=8 required></h3>
+                <h3 class="heading">Branch:&nbsp;
+                        <select name="course" placeholder="Select your course" required>
+                            <option value="Select Branch" selected>Select Branch</option>
+                            <option value="CSE">Computer Science and Engineering</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="ECE">Electronic and Communication Engineering</option>
+                            <option value="ME">Mechanical Engineering</option>
+                            <option value="CE">Civil Engineering</option>
+                            <option value="CHE">Chemical Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="MME">Metallurgy </option>
+                            <option value="BT">Biotechnology</option>
+                        </select>
+                </h3>
+                <h3 class="heading">Roll Number:&nbsp;<input onblur=Validate(this) type="text" name="rollno" placeholder="Enter Roll number" required></h3>
+                <h3 class="heading">Name:&nbsp;<input onblur=Validate(this) type="text" name="name" placeholder="Enter your name" required></h3>
+                <h3 class="heading">Phone:&nbsp;<input onblur=Validate(this) type="number" name="phone" placeholder="Enter your phone number" maxlength=10 required></h3>
+                <h3 class="heading">Email Id:&nbsp;<input onblur=Validate(this) type="email" name="email" placeholder="Enter email" required></h3>
                 <h3 class="heading">Password:&nbsp;<input type="password" id="password" name="password" placeholder="Enter password" required></h3>
                 <h3 class="heading">Confirm Password:&nbsp;<input type="password" id="conf_pass" placeholder="Re-enter password" required></h3>
                 <div class="wrap"><h4 id="message"></h4></div>
@@ -73,6 +87,13 @@
                 </div>
                 <br>
             </form>
+        </div>
+        <div class="errorCont">
+            <div id="regnoError" class="valError">This is a error</div>
+            <div id="rollError" class="valError">This is a error</div>
+            <div id="nameError" class="valError">This is a error</div>
+            <div id="phoneError" class="valError">This is a error</div>
+            <div id="emailError" class="valError">This is a error</div>
         </div>
     </div>
     <!--Login-->
@@ -170,32 +191,25 @@
             <div>
                 <!--content-->
                 <div class="content">
-                    <img class="design" src="img/back2.png" style="max-width:20%">
+                    <img class="design" src="img/back2.png">
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;Academic Details:</h1>
                     <form method="POST" action="reg.php">
                         <h3 class="heading">10th Standard marks:&nbsp;<input type="number" name="10m" placeholder="Class 10 percentage here" required></h3>
                         <h3 class="heading">12th Standard marks:&nbsp;<input type="number" name="12m" placeholder="Class 12 percentage here" required></h3>
-                        <h3 class="heading">Course:&nbsp;
+                        <h3 class="heading">Extra Curricular<br>Activities:&nbsp;<input type="text" name="ECA" placeholder="Extra Curricular Activities here" required></h3>
+                        <h3 class="heading">Scholastic<br>Achievements:&nbsp;<input type="number" name="Acievement" placeholder="Scholastic Achievements here" required></h3>
+                        <h3 class="heading">Hobbies:&nbsp;
                             <select name="course" required>
-                                <option>Select Course </option>
-                                <option value="B.Tech">B.Tech</option>
-                                <option value="M.Tech">M.Tech</option>
-                                <option value="MCA">MCA</option>
+                                <option>Select Hobby</option>
+                                <option value="Painting">Painting</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Playing Guitar">Playing Guitar</option>
+                                <option value="Singing">Singing</option>
+                                <option value="Dancing">Dancing</option>
+                                <option value="Travelling">Travelling</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Beatboxing">Beatboxing</option>
                             </select>
-                        </h3>
-                        <h3 class="heading">Course:&nbsp;
-                            <select name="course" placeholder="Select your course" required>
-                            <option value="0" selected>Select Branch </option>
-                            <option value="1">Computer Science and Engineering</option>
-                            <option value="2">Information Technology</option>
-                            <option value="3">Electronic and Communication Engineering</option>
-                            <option value="4">Mechanical Engineering</option>
-                            <option value="5">Civil Engineering</option>
-                            <option value="6">Chemical Engineering</option>
-                            <option value="7">Electrical Engineering</option>
-                            <option value="8">Metallurgy </option>
-                            <option value="9">Biotechnology</option>
-                        </select>
                         </h3>
                         <div class="wrap"><h4 class="message2"></h4></div>
                         <br>
@@ -209,7 +223,7 @@
                 <form method="POST" action="reg.php">
                     <br>
                     <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button>
-                    <button class="nav" id="set_button" type="submit">Update</button></div>
+                    <button class="nav" id="set_button" type="submit">Set</button></div>
                     <br>
                 </form>
             </div>
@@ -223,7 +237,6 @@
     </div>
     </body>
     <script>
-        var response= "<?php echo isset($_SESSION['response'])?$_SESSION['response']:0;?>";
         var login="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0;?>";  
     </script>
     <script src="student.js"></script>

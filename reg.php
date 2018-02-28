@@ -21,12 +21,12 @@
     if($stmt=$conn->prepare(' insert into students (regno,rollno,name,phone,email,pass,request) values (?,?,?,?,?,?,?)')){
 		$stmt->bind_param("ississi",$regno,$rollno,$name,$phone,$email,$pass,$request);
                 if(!($stmt->execute())){
-                    $_SESSION['response']="Execute failed:" . $stmt->error;
-                    header("Location:/classProject/students",true,303);
+                    echo "Execute failed:" . $stmt->error;
+                    die();
                 }
                 else{
-                    $_SESSION['response']="Successfully lodged Registration Request; Use Login form from next time";
-                    header("Location:/classProject/students",true,303);
+                    echo "Successfully lodged Registration Request; Use Login form from next time";
+                    die();
                 }
 	}
 ?>
