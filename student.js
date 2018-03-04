@@ -77,16 +77,39 @@ $(document).ready(function(){
         $("#register , #home, #login, #profile").hide();
         $('#login').fadeIn();
         $('#message1').text(login).css({'display':'inline-block'});
-        if(login=="You are logged in,Check Profile")
+        if(login=="You are logged in,Check Profile"){
+            //banner
             $('#login').find('button').attr('disabled','disabled').css('background-color','grey');
+            $('.banner').fadeTo('slow', 0, function(){
+                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg)',
+                            'background-size':'cover',
+                            'background-position-x':'0px',
+                            'background-position':'center',
+                            'background-attachment':'fixed'
+                            });
+            }).fadeTo('slow', 1)
+            //titles
+            $('.title2').fadeTo('slow', 0, function(){
+                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg)',
+                            'background-size':'cover',
+                            'background-position-x':'0px',
+                            'background-position':'center',
+                            'background-attachment':'fixed'
+                            });
+            }).fadeTo('slow', 1)
+        }
     }
     //Roll no insatalling
-    $("#register").find("input[name='regno'],select[name='course']").blur(function(){
+    $("#register").find("input[name='regno'],select[name='branch']").blur(function(){
         x=$("#register").find("input[name='regno']").val();
-        var selected = $("select[name='course'] option:selected").val();
+        var selected = $("select[name='branch'] option:selected").val();
         x=x/10000;
-        if(x>999 && selected!="Select Branch")
-            $("input[name=rollno]").val(Math.floor(x)%100+"/"+selected+"/");
+        if(x>999 && selected!="Select Branch"){
+            if(Math.floor(x)%100<=9) //Special case for year 2001,2002,2003 etc
+                $("input[name=rollno]").val("0"+Math.floor(x)%100+"/"+selected+"/");
+            else
+                $("input[name=rollno]").val(Math.floor(x)%100+"/"+selected+"/");
+            }
         else  
             $("input[name=rollno]").val(null);
     });
@@ -108,6 +131,7 @@ $(document).ready(function(){
     });
 });
 //Validation
+
 function Validate(x){
     //Block register button
     $("#register").find("button[type=submit]").attr("disabled","disabled");
@@ -124,7 +148,7 @@ function Validate(x){
     else if($(x).attr('name')=="rollno"){
         if(!$(x).val())
             $("#rollError").css({'background-color':'red','color':'white'}).text("Please complete above details to get roll no!").slideDown();
-        else if(!(/^[1-9]{2}\/(CSE|IT|ECE|ME|CE|CHE|EE|MME|BT)\/[0-9]{2,3}$/.test($(x).val())))
+        else if(!(/^[0-9]{2}\/(CSE|IT|ECE|ME|CE|CHE|EE|MME|BT)\/[0-9]{2,3}$/.test($(x).val())))
             $("#rollError").css({'background-color':'red','color':'white'}).text("Insert a Valid Roll no").slideDown();
         else
             $("#rollError").css({'background-color':'#65FF00','color':'green'}).text("Roll no Ok");

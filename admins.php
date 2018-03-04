@@ -85,17 +85,25 @@
                 //New Requests
                 $sql="SELECT * from students where request=0";
                 $result=$conn->query($sql);
+                $new=$result->num_rows;
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<div class=new><div class='content'>
                             <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/back2.png>
                             <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
-                            "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
+                            "<h3 class=heading>Branch: <a class=detail>" . $row["branch"]."</a></h3>".
+                            "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>".  
                             "<h3 class=heading>Name: <a class=detail>" . $row["name"]."</a></h3>". 
                             "<h3 class=heading>Phone: <a class=detail>".$row["phone"]."</a></h3>". 
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
+                            <form method=post action=admin_edit.php target=inspectFrame".$row["regno"].">
+                                <input type=hidden name=regno_e value=".$row["regno"].">
+                                <button type=submit class=look onclick=look(this)>Inspect Profile</button><br>
+                            </form>
+                            <div class=wrap><iframe name=inspectFrame".$row["regno"]." src=admin_edit.php></iframe></div>
+                            <br>
                             </div><br><br></div>";
                     }
                 }
@@ -105,17 +113,25 @@
                 //Rejected Requests
                 $sql="SELECT * from students where request=-1";
                 $result=$conn->query($sql);
+                $rejected=$result->num_rows;
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<div class=rejected><div class='content'>
-                            <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/reject.png>
-                            <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
+                            <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:50px;top:50px;' src=img/reject.png>
+                            <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>".
+                            "<h3 class=heading>Branch: <a class=detail>" . $row["branch"]."</a></h3>". 
                             "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
                             "<h3 class=heading>Name: <a class=detail>" . $row["name"]."</a></h3>". 
                             "<h3 class=heading>Phone: <a class=detail>".$row["phone"]."</a></h3>". 
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
+                            <form method=post action=admin_edit.php target=inspectFrame".$row["regno"].">
+                                <input type=hidden name=regno_e value=".$row["regno"].">
+                                <button type=submit class=look onclick=look(this)>Inspect Profile</button><br>
+                            </form>
+                            <div class=wrap><iframe name=inspectFrame".$row["regno"]." src=admin_edit.php></iframe></div>
+                            <br>
                             </div><br><br></div>";
                     }
                 }
@@ -125,17 +141,25 @@
                 //Accepted Requests
                 $sql="SELECT * from students where request=1";
                 $result=$conn->query($sql);
+                $accepted=$result->num_rows;
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<div class=accepted><div class='content'>
-                            <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:40px;top:10px;' src=img/accept.png>
+                            <img style='z-index:-999;float:right;width:auto;max-width: 17%;position:absolute;right:50px;top:50px;' src=img/accept.png>
                             <h3 class=heading>Registration no: <a class='detail regno'>" . $row["regno"]."</a></h3>". 
+                            "<h3 class=heading>Branch: <a class=detail>" . $row["branch"]."</a></h3>".
                             "<h3 class=heading>Roll no: <a class=detail>" . $row["rollno"]."</a></h3>". 
                             "<h3 class=heading>Name: <a class=detail>" . $row["name"]."</a></h3>". 
                             "<h3 class=heading>Phone: <a class=detail>".$row["phone"]."</a></h3>". 
                             "<h3 class=heading>Email Id: <a class=detail>".$row["email"]."</a></h3>
                             <button class=accept onclick=accept(this)>Accept</button>
                             <button class=reject onclick=reject(this)>Reject</button>
+                            <form method=post action=admin_edit.php target=inspectFrame".$row["regno"].">
+                                <input type=hidden name=regno_e value=".$row["regno"].">
+                                <button type=submit class=look onclick=look(this)>Inspect Profile</button><br>
+                            </form>
+                            <div class=wrap><iframe name=inspectFrame".$row["regno"]." src=admin_edit.php></iframe></div>
+                            <br>
                             </div><br><br></div>";
                     }
                 }
@@ -147,10 +171,10 @@
                 echo "<div class=content><br><h1 style=' margin-left: 10%;'>You need to LOGIN first !!</h1><br></div>";
         ?>
         <div id="request_select">
-            <a class="head">Sort Request By:<a>
-            <a class="r" onclick="display('rejected')">Rejected</a>
-            <a class="n" onclick="display('new')">New</a>
-            <a class="a" onclick="display('accepted')">Accepted</a>
+            <a class="head">Sort Request By:</a>
+            <a class="r" onclick="display('rejected')">Rejected&nbsp;<div class="badge" style="display:inline-block;min-width:40px">&nbsp;<?php echo $rejected;?>&nbsp;</div></a>
+            <a class="n" onclick="display('new')">New&nbsp;<div class="badge" style="display:inline-block;min-width:40px">&nbsp;<?php echo $new;?>&nbsp;</div></a>
+            <a class="a" onclick="display('accepted')">Accepted&nbsp;<div class="badge" style="display:inline-block;min-width:40px">&nbsp;<?php echo $accepted;?>&nbsp;</div></a>
         </div>
     </div>
     </body>

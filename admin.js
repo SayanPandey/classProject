@@ -48,6 +48,13 @@ function accept(x){
         }).slideDown();
     })
 }
+function look(x){
+    var y=$(x).parent().parent();
+    $(y).find('iframe').slideToggle();
+    $('html, body').animate({
+        scrollTop: $(y).find('iframe').offset().top-80
+    }, 1000);
+}
 function display(x){
     $(".rejected , .accepted, .new").hide();
     $('.'+x).fadeIn();

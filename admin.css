@@ -75,13 +75,21 @@ nav{
     text-shadow:black 0px 0px 20px;
     box-shadow: black 10px 10px 20px;
 }
-.content,dl{
+.content,dl,iframe{
     position: relative;
     border:black solid;
     border-radius:20px;
     box-shadow: black 10px 10px 20px;
     border-top-right-radius:200px;
     border-bottom-left-radius:200px;
+    position:relative;
+}
+iframe{
+    display:none;
+    min-width:95%;
+    height:600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 dt,.heading{
     color:#083854;
@@ -100,7 +108,7 @@ dd{
     position:absolute;
     right:10px;
 }
-input{
+input,select{
     float:right;
     min-width: 50%;
     margin-right:30%;
@@ -140,7 +148,7 @@ input{
     border-radius: 10px;
     border-top-right-radius: 60px;
     border-bottom-left-radius: 60px;
-    top:30%;
+    top:4.5em;
     right:30%;
 }
 .reject{
@@ -155,7 +163,22 @@ input{
     border-radius: 10px;
     border-top-right-radius: 60px;
     border-bottom-left-radius: 60px;
-    top:50%;
+    top:9.5em;
+    right:30%;
+}
+.look{
+    position: absolute;
+    font-size: 1em;
+    background-color:#009DFF;
+    padding:10px;
+    color:white;
+    min-width:20%;
+    border:none;
+    box-shadow: black 5px 5px 10px;
+    border-radius: 10px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    top:14.5em;
     right:30%;
 }
 .accept:hover{
@@ -164,6 +187,10 @@ input{
 }
 .reject:hover{
     background-color:#ff0000;
+    text-shadow:white 0px 0px 5px;
+}
+.look:hover{
+    background-color:#00EAFF;
     text-shadow:white 0px 0px 5px;
 }
 #request_select{
@@ -209,4 +236,17 @@ input{
 }
 .rejected,.accepted{
     display:none;
+}
+#basic{
+    position:relative;
+}
+#basic #delete{
+    position:absolute;
+    right:100px;
+    bottom:30px;
+}
+.badge{
+    background-color: #083854;
+    color:white;
+    border-radius: 10px;
 }

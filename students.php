@@ -61,7 +61,7 @@
             <form method="POST" action='reg.php'>
                 <h3 class="heading">Registration Number:&nbsp;<input onblur=Validate(this) type="number" name="regno" placeholder="Enter Registration number" maxlength=8 required></h3>
                 <h3 class="heading">Branch:&nbsp;
-                        <select name="course" placeholder="Select your course" required>
+                        <select name="branch" placeholder="Select your course" required>
                             <option value="Select Branch" selected>Select Branch</option>
                             <option value="CSE">Computer Science and Engineering</option>
                             <option value="IT">Information Technology</option>
@@ -132,13 +132,25 @@
                 $conn=new mysqli($server,$username,$password,$database);
                 if($conn->connect_error)
                     die('Fatal Connection error!!');
-                //Basic Profile
+
+                
                 $sql="SELECT * from students where regno=".$_SESSION['regno'];
                 $result=$conn->query($sql);
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         $name=$row["name"];
-                        echo '<div class="content">
+                            
+                        //Profile picture
+                        echo'<h1 class="title title2" style="font-size: 1.5em">&nbsp;&nbsp;Profile Picture</h1>
+                        <div class="profile_back" style="background-image: url(img/std_img/'.$_SESSION['regno'].'.jpg),url(img/banner.jpg);">
+                                <div id="profile_name">'.$name.'</div>
+                                <input type="file" name="file" id="file" />
+                                <a class="nav" onclick=$("#file").click()>Upload file</a>
+                            </div>
+                            <br>';
+                        //Basic Profile
+                        echo '<h1 class="title title2" style="font-size: 1.5em">&nbsp;&nbsp;Basic Profile</h1>
+                        <div class="content">
                         <img style=" z-index:-999;
                             float:right;
                             width:auto;
@@ -159,18 +171,11 @@
                 else {
                     echo "<div class='new'><div class=content><br><h1 style='margin-left: 10%;'>Problem inloading Basic profile</h1><br></div><br><br></div>";
                 }
-                
-            //Profile picture
-            echo'<div class="profile_back" style="background-image: url(img/std_img/'.$_SESSION['regno'].'.jpg);">
-                    <div id="profile_name">'.$name.'</div>
-                    <input type="file" name="file" id="file" />
-                    <a class="nav" onclick=$("#file").click()>Upload file</a>
-                </div>
-                <br>';
             
         
             //More datails
-            echo '<div>
+            echo '<h1 class="title title2" style="font-size: 3em">&nbsp;&nbsp;Additional Details</h1>
+            <div>
                 <!--content-->
                 <div class="content">
                     <img class="design" src="img/back2.png">
@@ -178,10 +183,10 @@
                     <form method="POST" action="reg.php">
                         <h3 class="heading">Date of Birth:&nbsp;<input type="date" name="DOB" placeholder="Enter Date of Birth" required></h3>
                         <h3 class="heading">Age:&nbsp;<input type="number" name="age" placeholder="Your age here" readonly></h3>
-                        <h3 class="heading">Address:&nbsp;<input type="text" name="address" placeholder="Enter your address" required></h3>
                         <h3 class="heading">Father\'s Name:&nbsp;<input type="text" name="fname" placeholder="Enter your Father\'s name" required></h3>
                         <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" name="mname" placeholder="Enter your Mother\'s name" required></h3>
                         <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
+                        <h3 class="heading">Address:&nbsp;<textarea name="address" placeholder="Enter your address" required style="font-family:\'Arial\', Times, sans-serif;"></textarea></h3><br>
                         <div class="wrap"><h4 class="message2"></h4></div>
                         <br>
                     </form>
@@ -237,6 +242,7 @@
     </div>
     </body>
     <script>
+        var regno="<?php echo isset($_SESSION['regno'])?$_SESSION['regno']:'img/banner.jpg';?>"
         var login="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0;?>";  
     </script>
     <script src="student.js"></script>

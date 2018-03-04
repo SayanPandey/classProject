@@ -1,6 +1,7 @@
 <?php
     session_start();
     $regno=isset($_POST['regno'])?htmlspecialchars($_POST['regno']):0;
+    $branch=isset($_POST['branch'])?htmlspecialchars($_POST['branch']):0;
     $rollno=isset($_POST['rollno'])?htmlspecialchars( $_POST['rollno']):0;
     $name=isset($_POST['name'])?htmlspecialchars($_POST['name']):0;
     $phone=isset($_POST['phone'])?htmlspecialchars($_POST['phone']):0;
@@ -18,10 +19,10 @@
 		die("Fatal Connection Error !!");
 	}
 	
-    if($stmt=$conn->prepare(' insert into students (regno,rollno,name,phone,email,pass,request) values (?,?,?,?,?,?,?)')){
-		$stmt->bind_param("ississi",$regno,$rollno,$name,$phone,$email,$pass,$request);
+    if($stmt=$conn->prepare(' insert into students (regno,branch,rollno,name,phone,email,pass,request) values (?,?,?,?,?,?,?,?)')){
+		$stmt->bind_param("isssissi",$regno,$branch,$rollno,$name,$phone,$email,$pass,$request);
                 if(!($stmt->execute())){
-                    echo "Execute failed:" . $stmt->error;
+                    echo "Execution failed:" . $stmt->error;
                     die();
                 }
                 else{
