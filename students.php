@@ -174,63 +174,144 @@
             
         
             //More datails
+            $sql="SELECT * from extradetail where regno=".$_SESSION['regno'];
+                $result=$conn->query($sql);
+                if($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $DOB=isset($row['DOB'])?htmlspecialchars($row['DOB']):0;
+                    $fname=isset($row['fname'])?htmlspecialchars($row['fname']):0;
+                    $mname=isset($row['mname'])?htmlspecialchars($row['mname']):0;
+                    $gemail=isset($row['gemail'])?htmlspecialchars($row['gemail']):0;
+                    $address=isset($row['address'])?htmlspecialchars($row['address']):0;
+                    $m10=isset($row['m10'])?htmlspecialchars($row['m10']):0;
+                    $m12=isset($row['m12'])?htmlspecialchars($row['m12']):0;
+                    $ECA=isset($row['ECA'])?htmlspecialchars($row['ECA']):NULL;
+                    $Achievement=isset($row['Achievement'])?htmlspecialchars($row['Achievement']):NULL;
+                    $hobby=isset($row['hobby'])?htmlspecialchars($row['hobby']):0;
+                }
+                else{
+                    $DOB=$fname=$mname=$gemail=$address=$m10=$m12=$ECA=$Achievement=$hobby='';
+                }
             echo '<h1 class="title title2" style="font-size: 3em">&nbsp;&nbsp;Additional Details</h1>
             <div>
                 <!--content-->
                 <div class="content">
                     <img class="design" src="img/back2.png">
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;Personal Details:</h1>
-                    <form method="POST" action="reg.php">
-                        <h3 class="heading">Date of Birth:&nbsp;<input type="date" name="DOB" placeholder="Enter Date of Birth" required></h3>
-                        <h3 class="heading">Age:&nbsp;<input type="number" name="age" placeholder="Your age here" readonly></h3>
-                        <h3 class="heading">Father\'s Name:&nbsp;<input type="text" name="fname" placeholder="Enter your Father\'s name" required></h3>
-                        <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" name="mname" placeholder="Enter your Mother\'s name" required></h3>
-                        <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" name="email" placeholder="Enter email" required></h3>
-                        <h3 class="heading">Address:&nbsp;<textarea name="address" placeholder="Enter your address" required style="font-family:\'Arial\', Times, sans-serif;"></textarea></h3><br>
-                        <div class="wrap"><h4 class="message2"></h4></div>
+                    <form method="POST" id="update_form" action="update.php">
+                        <h3 class="heading">Date of Birth:&nbsp;<input type="date" class="after" name="DOB" placeholder="Enter Date of Birth" value="'.$DOB.'"required  disabled ><a class="details before">'.$DOB.'</a></h3>
+                        <h3 class="heading">Age:&nbsp;<input type="number" class="after" name="age" placeholder="Your age here" onload="$(\'input[name =DOB]\').trigger(\'change\');" disabled readonly><a class="details before">'.$DOB.'</a></h3>
+                        <h3 class="heading">Father\'s Name:&nbsp;<input type="text" class="after" name="fname" placeholder="Enter your Father\'s name" value="'.$fname.'" required  disabled ><a class="details before">'.$fname.'</a></h3>
+                        <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" class="after" name="mname" placeholder="Enter your Mother\'s name" value="'.$mname.'" required  disabled ><a class="details before">'.$mname.'</a></h3>
+                        <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" class="after" name="gemail" placeholder="Enter email" required  value="'.$gemail.'"  disabled ><a class="details before">'.$gemail.'</a></h3>
+                        <h3 class="heading">Address:&nbsp;<textarea class="after" name="address" placeholder="Enter your address" required disabled style="font-family:\'Arial\', Times, sans-serif;">'.$address.'</textarea><a class="details before">'.$address.'</a></h3><br>
                         <br>
-                    </form>
                 </div>
             </div>
             <br>
             <div>
                 <!--content-->
                 <div class="content">
-                    <img class="design" src="img/back2.png">
+                    <img class="design" src="img/back2.png" style="max-width:20%">
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;Academic Details:</h1>
-                    <form method="POST" action="reg.php">
-                        <h3 class="heading">10th Standard marks:&nbsp;<input type="number" name="10m" placeholder="Class 10 percentage here" required></h3>
-                        <h3 class="heading">12th Standard marks:&nbsp;<input type="number" name="12m" placeholder="Class 12 percentage here" required></h3>
-                        <h3 class="heading">Extra Curricular<br>Activities:&nbsp;<input type="text" name="ECA" placeholder="Extra Curricular Activities here" required></h3>
-                        <h3 class="heading">Scholastic<br>Achievements:&nbsp;<input type="number" name="Acievement" placeholder="Scholastic Achievements here" required></h3>
-                        <h3 class="heading">Hobbies:&nbsp;
-                            <select name="course" required>
-                                <option>Select Hobby</option>
-                                <option value="Painting">Painting</option>
-                                <option value="Gaming">Gaming</option>
-                                <option value="Playing Guitar">Playing Guitar</option>
-                                <option value="Singing">Singing</option>
-                                <option value="Dancing">Dancing</option>
-                                <option value="Travelling">Travelling</option>
-                                <option value="Reading">Reading</option>
-                                <option value="Beatboxing">Beatboxing</option>
-                            </select>
-                        </h3>
+                        <h3 class="heading">10th Standard marks:&nbsp;<input type="number" class="after" name="m10" placeholder="Class 10 percentage here"  value="'.$m10.'" required  disabled ><a class="details before">'.$m10.'</a></h3>
+                        <h3 class="heading">12th Standard marks:&nbsp;<input type="number" class="after" name="m12" placeholder="Class 12 percentage here"  value="'.$m12.'" required  disabled ><a class="details before">'.$m12.'</a></h3>
+                        <h3 class="heading">Extra Curricular<br>Activities:&nbsp;<input type="text" class="after" name="ECA" placeholder="Extra Curricular Activities here"  value="'.$ECA.'" disabled ><a class="details before">'.$ECA.'</a></h3>
+                        <h3 class="heading">Scholastic<br>Achievements:&nbsp;<input type="text" class="after" name="Ach" placeholder="Scholastic Achievements here"  value="'.$Achievement.'" disabled ><a class="details before">'.$Achievement.'</a></h3>
+                </div>
+                <br>
+                <div class="content" style="min-height:70vh">
+                    <img class="design" src="img/back2.png">
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Your Hobbies:</h1>
+                    <h3 class="heading">Hobbies:&nbsp;<br>';
+                    //Getting hobbies
+                    $hobbies=(explode(",",$hobby));
+                    foreach($hobbies as $selected)
+                        echo "<a class='details before' style='z-index:-1'>&nbsp&nbsp".$selected."<br></a>";
+                   
+                        echo '</h3>
+                        <label class=label>Painting
+                            <input type="checkbox" name=check_list[] value="Painting"  disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Gaming
+                            <input type="checkbox" name=check_list[] value="Gaming"  disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Playing Guitar
+                            <input type="checkbox" name=check_list[] value="Playing Guitar" disabled />
+                            <span class=checkmark></span>
+                            
+                        </label>
+                        <label class=label>Singing
+                            <input type="checkbox" name=check_list[] value="Singing" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Dancing
+                            <input type="checkbox" value="Dancing" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Beatboxing
+                            <input type="checkbox" name=check_list[] value="Beatboxing" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Travelling
+                            <input type="checkbox" name=check_list[] value="Travelling" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Collecting items
+                            <input type="checkbox" name=check_list[] value="Collecting items" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Cycling
+                            <input type="checkbox" name=check_list[] value="Cycling" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Reading
+                            <input type="checkbox" name=check_list[] value="Reading" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Cooking
+                            <input type="checkbox" name=check_list[] value="Cooking" disabled />
+                            <span class=checkmark></span>
+                        </label>
+                        <label class=label>Gardening
+                            <input type="checkbox" name=check_list[] value="Gardening" disabled />
+                            <span class=checkmark></span>
+                        </label>
                         <div class="wrap"><h4 class="message2"></h4></div>
                         <br>
-                    </form>
+                    <img src="img/back2.jpg" class="hobby">
+                    <div>
+                        <img src="img/dancing.gif" class="hobby_image dancing">
+                    </div>
+                    <div>
+                        <img src="img/singing.gif" class="hobby_image singing">
+                    </div>
+                    <div>
+                        <img src="img/guitar.gif" class="hobby_image guitar">
+                    </div>
+                    <div>
+                        <img src="img/gaming.gif" class="hobby_image gaming">
+                    </div>
+                    <div>
+                        <img src="img/painting.gif" class="hobby_image painting">
+                    </div>
+                    <div>
+                        <img src="img/hobbies.png" class="hobby_image hobbies">
+                    </div>
                 </div>
             </div>
             <br>
             <div>
             <!--content-->
             <div class="content">
-                <form method="POST" action="reg.php">
                     <br>
-                    <div class="wrap"><button class="nav" id="update_button" type="submit">Update</button>
-                    <button class="nav" id="set_button" type="submit">Set</button></div>
+                    <div class="wrap"><h4 id="message2" style="max-width:40%"></h4></div>
+                    <div class="wrap"><a class="nav" id="update_button">Update</a>
+                    <a class="nav" id="set_button" type="submit">Set</a></div>
                     <br>
-                </form>
+            </form>
             </div>
         </div>
             ';
@@ -246,5 +327,4 @@
         var login="<?php echo isset($_SESSION['login'])?$_SESSION['login']:0;?>";  
     </script>
     <script src="student.js"></script>
-</html>
-                        
+</html>                

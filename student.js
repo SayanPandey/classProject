@@ -181,3 +181,30 @@ function Validate(x){
             $("#emailError").css({'background-color':'#65FF00','color':'green'}).text("Email Ok");
     }
 }
+
+//More Details Updation
+$("#update_button").click(function(){
+    $("input,textarea").removeAttr("disabled");
+    $(".before").css({'display':'block'}).slideUp(function(){
+        $(this).remove();
+        $(".after").slideDown();
+        $("label").css({'display':'block'}).hide().slideDown();
+    });
+});
+$("#set_button").click(function(){
+    event.preventDefault();
+    $("#message2").slideUp();
+    serializedData=$("#update_form").serialize();
+    var request=$.ajax({
+        url: "update.php",
+        type: "post",
+        data: serializedData
+    });
+    request.done(function (response, textStatus, jqXHR){
+        $("#message2").text(response).css({'display':'inline-block'}).hide().slideDown();
+        $("input,textarea").addAttr("disabled");
+    });
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        alert("Unable to Handle request please try again later !!");
+    });
+});

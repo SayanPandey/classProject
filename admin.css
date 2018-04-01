@@ -240,13 +240,29 @@ input,select{
 #basic{
     position:relative;
 }
-#basic #delete{
+#name{
     position:absolute;
     right:100px;
-    bottom:30px;
+    top:95%;
+    color:white;
+    text-shadow:black 5px 5px 10px;
+    font-size:2em;
+    font-weight:bold;
+    text-align:center;
 }
 .badge{
     background-color: #083854;
     color:white;
     border-radius: 10px;
+}
+.hobby{
+    position:absolute;
+    max-height:60vh;
+    max-width:60vw;
+    float:right;
+    right:80px;
+    bottom:5px;
+    border-radius:10px;
+    z-index:-1000;
+    opacity:0.5;
 }
