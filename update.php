@@ -15,14 +15,8 @@
         $hobby=implode(",",$_POST['check_list']);
     }
     if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='You are logged in,Check Profile'){
-        $server="localhost";
-        $username="root";
-        $password="";
-        $database="classProject";
+        require 'connection.php';
 
-        $conn=new mysqli($server,$username,$password,$database);
-        if($conn->connect_error)
-            die('Fatal Connection error!!');
     }
     //Update Table
     if($stmt=$conn->prepare('insert into extradetail (regno,DOB,fname,mname,gemail,address,m10,m12,ECA,Achievement,hobby) values (?,?,?,?,?,?,?,?,?,?,?)')){

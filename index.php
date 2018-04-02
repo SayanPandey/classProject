@@ -18,14 +18,14 @@
         <div id="select">
             <div id="student">
                 <div class="click">
-                    <a target="_blank" href="students"><h1 class="panel" style='float:left;display:inline-block;'>Students' Portal</h1></a>
+                    <a target="_blank" href="students.php"><h1 class="panel" style='float:left;display:inline-block;'>Students' Portal</h1></a>
                     <img id="std_img" src="img/student.png" style="float:right">
                 </div>
             </div>
             <div id="admin">
                 <div class="click">
                     <img id ="admin_img" src="img/administrator.png" style="float:left">
-                    <a target="_blank" href="admins"><h1 class="panel" style='float:right;display:inline-block;'>Administrators' Portal</h1></a> 
+                    <a target="_blank" href="admins.php"><h1 class="panel" style='float:right;display:inline-block;'>Administrators' Portal</h1></a> 
                 </div>
             </div> 
         </div>

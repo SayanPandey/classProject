@@ -1,6 +1,7 @@
 /*
  * Javascript ::
  */
+//Password checking
 document.getElementById('password').addEventListener("keyup",function(){
     var reg = document.getElementById('register_button');
     var pass = document.getElementById('password');
@@ -64,6 +65,7 @@ function show(x){
     $('#'+x).fadeIn();
     
 }
+//age
 $("input[name ='DOB']").change(function(){
     var dob=new Date($(this).val());
     var today= new Date();
@@ -81,7 +83,7 @@ $(document).ready(function(){
             //banner
             $('#login').find('button').attr('disabled','disabled').css('background-color','grey');
             $('.banner').fadeTo('slow', 0, function(){
-                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg)',
+                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg),url(img/banner.jpg)',
                             'background-size':'cover',
                             'background-position-x':'0px',
                             'background-position':'center',
@@ -90,7 +92,7 @@ $(document).ready(function(){
             }).fadeTo('slow', 1)
             //titles
             $('.title2').fadeTo('slow', 0, function(){
-                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg)',
+                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg),url(img/banner.jpg)',
                             'background-size':'cover',
                             'background-position-x':'0px',
                             'background-position':'center',
@@ -129,7 +131,10 @@ $(document).ready(function(){
 			alert("Unable to Handle request please try again later !!");
 		});
     });
+    $("input[name ='DOB']").change();
+    $("#age").text($("input[name ='age']").val());
 });
+
 //Validation
 
 function Validate(x){
@@ -208,3 +213,20 @@ $("#set_button").click(function(){
         alert("Unable to Handle request please try again later !!");
     });
 });
+
+//Image Upload
+$('#submit_form').on('submit', function(e){  
+    e.preventDefault();  
+    $.ajax({  
+         url:"upload.php",  
+         method:"POST",  
+         data:new FormData(this),  
+         cache:false,
+         contentType:false,   
+         processData:false,  
+         success:function(received)  
+         { 
+            $("#message2").html(received);
+         }  
+    });
+}); 

@@ -3,14 +3,7 @@
     $regno=isset($_POST['regno_e'])?htmlspecialchars($_POST['regno_e']):0;
 
     if(isset($_SESSION['alogin']) && htmlspecialchars($_SESSION['alogin'])=='You are logged in,Check Requests'){
-        $server="localhost";
-        $username="root";
-        $password="";
-        $database="classProject";
-
-        $conn=new mysqli($server,$username,$password,$database);
-        if($conn->connect_error)
-            die('Fatal Connection error!!');
+        require 'connection.php';
     }
     else{
         echo '<h1 class="title">You need to Login Again !</h1>';
@@ -26,6 +19,7 @@
 		<meta charset="utf-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" type="text/css" href="admin.css">
+                <script src="jquery3.3.1.js"></script>
 	</head>
 <body>
 <!--Edit Profile-->
@@ -93,7 +87,8 @@
                     <img class="design" src="img/back2.png">
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;Personal Details:</h1>
                         <h3 class="heading">Date of Birth:&nbsp;<a class=detail>'.$DOB.'</a></h3>
-                        <h3 class="heading"><a class=detail>'.$DOB.'</a></h3>
+                        <input type="hidden" id="dob" value="'.$DOB.'"/>
+                        <h3 class="heading">Age:&nbsp<a class=detail id="age"></a></h3>
                         <h3 class="heading">Father\'s Name:&nbsp;<a class=detail>'.$fname.'</a></h3>
                         <h3 class="heading">Mother\'s Name:&nbsp;<a class=detail>'.$mname.'</a></h3>
                         <h3 class="heading">Guardian\'s email:&nbsp<a class=detail>'.$gemail.'</a></h3>
@@ -111,8 +106,12 @@
                         <h3 class="heading">12th Standard marks:&nbsp;<a class=detail>'.$m12.'</a></h3>
                         <h3 class="heading">Extra Curricular<br>Activities:&nbsp;<a class=detail>'.$ECA.'</a></h3>
                         <h3 class="heading">Scholastic<br>Achievements:&nbsp;<a class=detail>'.$Achievement.'</a></h3>
-                        <h3 class="heading">Hobbies:&nbsp;<br>
+                    </div>
+                    <br>
+                    <div class="content" style="min-height:70vh">
+                    <img class="design" src="img/back2.png">
                         <img src="img/back2.jpg" class="hobby">
+                        <h3 class="heading">Hobbies:&nbsp;<br>
                     ';
                     $hobbies=(explode(",",$hobby));
                     foreach($hobbies as $selected)
@@ -127,5 +126,18 @@
         </div>
             ';
 ?>
+<script>
+//age
+$(document).ready(function(){
+    (function(){
+    var dob=new Date($("#dob").val());
+    var today= new Date();
+    var age=today.getFullYear()-dob.getFullYear();
+    if(today.getMonth() < dob.getMonth() || (today.getMonth()==dob.getMonth() && today.getDate()<dob.getDate()))
+        age--; 
+    $("#age").text(age);
+})();
+});
+</script>
 </body>
 </html>

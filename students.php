@@ -124,16 +124,9 @@
         <!--content-->
         <?php
             if(isset($_SESSION['login']) && htmlspecialchars($_SESSION['login'])=='You are logged in,Check Profile'){
-                $server="localhost";
-                $username="root";
-                $password="";
-                $database="classProject";
-
-                $conn=new mysqli($server,$username,$password,$database);
-                if($conn->connect_error)
-                    die('Fatal Connection error!!');
-
                 
+                require 'connection.php';
+
                 $sql="SELECT * from students where regno=".$_SESSION['regno'];
                 $result=$conn->query($sql);
                 if($result->num_rows > 0) {
@@ -144,8 +137,12 @@
                         echo'<h1 class="title title2" style="font-size: 1.5em">&nbsp;&nbsp;Profile Picture</h1>
                         <div class="profile_back" style="background-image: url(img/std_img/'.$_SESSION['regno'].'.jpg),url(img/banner.jpg);">
                                 <div id="profile_name">'.$name.'</div>
-                                <input type="file" name="file" id="file" />
-                                <a class="nav" onclick=$("#file").click()>Upload file</a>
+                                <form method="POST" action="upload.php" id="submit_form" enctype="multipart/form-data">
+                                    <input type="file" name="file" id="file" />
+                                    <a class="nav" style="bottom:100px;" type=submit onclick=$("#file").click()>Upload file</a>
+                                    <input type="submit" id="file_submit"/>
+                                    <a class="nav" type=submit onclick=$("#file_submit").click()>Submit Photo</a>
+                                </form>
                             </div>
                             <br>';
                         //Basic Profile
@@ -190,7 +187,7 @@
                     $hobby=isset($row['hobby'])?htmlspecialchars($row['hobby']):0;
                 }
                 else{
-                    $DOB=$fname=$mname=$gemail=$address=$m10=$m12=$ECA=$Achievement=$hobby='';
+                    $DOB=$fname=$mname=$gemail=$address=$m10=$m12=$ECA=$Achievement=$hobby='N/A';
                 }
             echo '<h1 class="title title2" style="font-size: 3em">&nbsp;&nbsp;Additional Details</h1>
             <div>
@@ -200,7 +197,7 @@
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;Personal Details:</h1>
                     <form method="POST" id="update_form" action="update.php">
                         <h3 class="heading">Date of Birth:&nbsp;<input type="date" class="after" name="DOB" placeholder="Enter Date of Birth" value="'.$DOB.'"required  disabled ><a class="details before">'.$DOB.'</a></h3>
-                        <h3 class="heading">Age:&nbsp;<input type="number" class="after" name="age" placeholder="Your age here" onload="$(\'input[name =DOB]\').trigger(\'change\');" disabled readonly><a class="details before">'.$DOB.'</a></h3>
+                        <h3 class="heading">Age:&nbsp;<input type="number" class="after" name="age" placeholder="Your age here" disabled readonly><a class="details before" id="age"></a></h3>
                         <h3 class="heading">Father\'s Name:&nbsp;<input type="text" class="after" name="fname" placeholder="Enter your Father\'s name" value="'.$fname.'" required  disabled ><a class="details before">'.$fname.'</a></h3>
                         <h3 class="heading">Mothers\'s Name:&nbsp;<input type="text" class="after" name="mname" placeholder="Enter your Mother\'s name" value="'.$mname.'" required  disabled ><a class="details before">'.$mname.'</a></h3>
                         <h3 class="heading">Guardian\'s Email Id:&nbsp;<input type="email" class="after" name="gemail" placeholder="Enter email" required  value="'.$gemail.'"  disabled ><a class="details before">'.$gemail.'</a></h3>

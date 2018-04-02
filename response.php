@@ -4,14 +4,8 @@
     if($regno==NULL || $response==NULL)
         header("Location:/classProject",true,303);
 
-    $server="localhost";
-    $username="root";
-    $password="";
-    $database="classProject";
-
-    $conn=new mysqli($server,$username,$password,$database);
-    if($conn->connect_error)
-        die('Fatal Connection error!!');
+    require 'connection.php';
+    
     $sql="update students set request=".$response." where regno=".$regno;
     echo $sql;
     $conn->query($sql);

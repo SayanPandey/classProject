@@ -116,7 +116,7 @@ input,textarea,select{
     text-align: center;
     display: block;
 }
-#message1,#message2{
+#message,#message1,#message2{
     display: none;
     font-weight: bold;
     border:black solid;

@@ -9,15 +9,7 @@
     $pass=isset($_POST['password'])?htmlspecialchars($_POST['password']):0;
     $request=0;
     
-    $servername='localhost';
-    $username='root';
-    $password='';
-    $database='classproject';
-	
-	$conn = new mysqli($servername,$username,$password,$database);
-	if($conn->connect_error){
-		die("Fatal Connection Error !!");
-	}
+    require 'connection.php';
 	
     if($stmt=$conn->prepare(' insert into students (regno,branch,rollno,name,phone,email,pass,request) values (?,?,?,?,?,?,?,?)')){
 		$stmt->bind_param("isssissi",$regno,$branch,$rollno,$name,$phone,$email,$pass,$request);
