@@ -4,7 +4,7 @@
 
 ## Overview:
 
-A **Student-Admin portal system** wherein student can request for registration with the portal and administrator can review (accept / reject ) his/her request. On acceptance of a request, a student can modify additional details like hobbies,address,phone number etc, anytime as per his/her wish.Student can upload his favorite image as a profile picture and can modify it anytime.
+A **Student-Admin portal system** wherein student can request for registration with the portal and administrator can review (accept / reject ) his/her request. On acceptance of a request, a student can modify additional details like hobbies,address,guardian's email ID etc, anytime as per his/her wish.Student can upload his favorite image as a profile picture and can modify it anytime.
 
 ​	Admin has the right to accept/reject a student's request anytime and can inspect students' profile completely but cannot change any details or see their passwords.
 
@@ -40,7 +40,7 @@ There is extensive implementation of **AJAX** and **PRG** and this site is **imp
 
 The MySQL database *classProject* contains three tables namely:
 
-* **admin** : Consists of details of administrators mainly ***username*** and ***password***.
+* **admins** : Consists of details of administrators mainly ***username*** and ***password***.
 * **students** : Consists of basic ***Registration Request*** Details like ***registration number,roll number*** etc.
 * **extradetail** : Consists of all other details that student wishes to add like ***hobbies,Address,Achievements*** etc.
 
