@@ -12,13 +12,13 @@ A **Student-Admin portal system** wherein student can request for registration w
 
 **You can check the site anytime because it is UP and RUNNING just click the link below:**
 
-**http://sayanpandey.000webhostapp.com/classProject **
+**http://sayanpandey.000webhostapp.com/classProject/**
 
 *To Register yourself follow the instructions:* 
 
 ​	**1. Submit a registration request from the Students' portal.**
 
-​	**2. Visit Administrators' Portal; Use *'admin'* as USERNAME and *'admin'* as PASSWORD. **
+​	**2. Visit Administrators' Portal; Use *'admin'* as USERNAME and *'admin'* as PASSWORD.**
 
 ​	**3.Find your request and click 'Accept'.**
 
@@ -36,7 +36,7 @@ The site is built completely from scratch, with no use of templates or bootstrap
 
 There is extensive implementation of **AJAX** and **PRG** and this site is **impervious** to **SQL Injections and Cross Site Scripting (XSS).**
 
-##Database Structure
+## Database Structure
 
 The MySQL database *classProject* contains three tables namely:
 
@@ -44,9 +44,9 @@ The MySQL database *classProject* contains three tables namely:
 * **students** : Consists of basic ***Registration Request*** Details like ***registration number,roll number*** etc.
 * **extradetail** : Consists of all other details that student wishes to add like ***hobbies,Address,Achievements*** etc.
 
-####A sample database is available in *'extras'* folder namely *'classProject.sql'*.
+#### A sample database is available in *'extras'* folder namely *'classProject.sql'*.
 
-##Screens:
+## Screens:
 
 ### Index Page:
 
@@ -58,11 +58,11 @@ The MySQL database *classProject* contains three tables namely:
 
 ![Students' Portal](/extras/student.png)
 
-######Profile
+###### Profile
 
 ![Profile](/extras/profile.PNG)
 
-###Administrator's Portal
+### Administrator's Portal
 
 ###### Home
 
