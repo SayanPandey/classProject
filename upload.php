@@ -15,7 +15,6 @@ session_start();
            {  
                 echo "<script>
                         alert(\"Image Uploaded Sucessfully\");
-                        location.reload(true);
                     </script>";  
            }  
       }  

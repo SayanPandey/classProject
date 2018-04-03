@@ -20,7 +20,7 @@
             $stmt->bind_param("ss",$user,$pass);
                     if(!($stmt->execute())){
                         $_SESSION['alogin']="Execute failed:" . $stmt->error;
-                        header("Location:/classProject/admins",true,303);
+                        header("Location:/classProject/admins.php",true,303);
                     }
                     else{
                         $result=$stmt->get_result();
@@ -39,7 +39,7 @@
             $stmt->bind_param("ss",$regno,$pass);
                     if(!($stmt->execute())){
                         $_SESSION['login']="Execute failed:" . $stmt->error;
-                        header("Location:/classProject/admins",true,303);
+                        header("Location:/classProject/students.php",true,303);
                     }
                     else{
                         $result=$stmt->get_result();
@@ -60,7 +60,7 @@
                        }
                         else
                             $_SESSION['login']="Credentials not matching !!";
-                        header("Location:/classProject/students",true,303);
+                        header("Location:/classProject/students.php",true,303);
                     }
         }
     }

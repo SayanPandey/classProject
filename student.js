@@ -207,7 +207,6 @@ $("#set_button").click(function(){
     });
     request.done(function (response, textStatus, jqXHR){
         $("#message2").text(response).css({'display':'inline-block'}).hide().slideDown();
-        $("input,textarea").addAttr("disabled");
     });
     request.fail(function (jqXHR, textStatus, errorThrown){
         alert("Unable to Handle request please try again later !!");
@@ -216,7 +215,8 @@ $("#set_button").click(function(){
 
 //Image Upload
 $('#submit_form').on('submit', function(e){  
-    e.preventDefault();  
+    e.preventDefault();
+    alert("Wait while image is being uploaded"); 
     $.ajax({  
          url:"upload.php",  
          method:"POST",  
@@ -225,8 +225,16 @@ $('#submit_form').on('submit', function(e){
          contentType:false,   
          processData:false,  
          success:function(received)  
-         { 
+         {
             $("#message2").html(received);
+            $('.banner,.title2,.profile_back').fadeTo('slow', 0, function(){
+                $(this).css({'background-image':'url(img/std_img/'+regno+'.jpg'+"?random="+ new Date().getTime()+'),url(img/banner.jpg)',
+                            'background-size':'cover',
+                            'background-position-x':'0px',
+                            'background-position':'center',
+                            'background-attachment':'fixed'
+                            });
+            }).fadeTo('slow', 1);
          }  
     });
 }); 

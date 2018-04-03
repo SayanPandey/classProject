@@ -295,7 +295,7 @@
                         <img src="img/painting.gif" class="hobby_image painting">
                     </div>
                     <div>
-                        <img src="img/hobbies.png" class="hobby_image hobbies">
+                        <img src="img/Hobbies.png" class="hobby_image hobbies">
                     </div>
                 </div>
             </div>

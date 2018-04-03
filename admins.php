@@ -58,7 +58,7 @@
                 position:absolute;
                 right:10px;" src="img/back2.png">
             <h1>&nbsp;&nbsp;&nbsp;&nbsp;Fill up the details:</h1>
-            <form action="login" method="POST">
+            <form action="login.php" method="POST">
                 <input type="hidden" value="admins" name="logger">
                 <h3 class="heading">Username:&nbsp;<input type="text" name="user" placeholder="Enter Username" required></h3>
                 <h3 class="heading">Password:&nbsp;<input type="password" name="password" placeholder="Enter password" required></h3>
